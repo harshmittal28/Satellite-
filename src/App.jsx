@@ -3,7 +3,7 @@ import AvatarGuide from './AvatarGuide';
 import Lesson from './Lesson';
 import Quiz from './Quiz';
 import Summary from './Summary';
-import Badges from './Badges';
+import Badge from './Badge'; // ✅ Use same name here and below
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
         <Route path="/lesson" element={<Lesson />} />
         <Route path="/quiz" element={<Quiz />} />
         <Route path="/summary" element={<Summary />} />
-        <Route path="/badges" element={<Badges />} />
+        <Route path="/badges" element={<Badge />} /> {/* ✅ Match component name */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>

@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
-import { db } from "../utils/firebase";
+import { db } from "./utils/firebase";
 
 const quizQuestions = [
   {
@@ -26,7 +26,7 @@ const quizQuestions = [
 function Quiz() {
   const [answers, setAnswers] = useState(Array(quizQuestions.length).fill(null));
   const [submitted, setSubmitted] = useState(false);
-  const [score, setScore] = useState(0);
+  const [setScore] = useState(0);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const recognitionRef = useRef(null);
