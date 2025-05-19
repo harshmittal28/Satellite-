@@ -5,18 +5,20 @@ import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import animationData from "./animation.json";
 
-function AvatarGuide() {
+function AvatarGuide({ messages: customMessages }) {
   const navigate = useNavigate();
   const [index, setIndex] = useState(0);
   const [voicesLoaded, setVoicesLoaded] = useState(false);
   const [listening, setListening] = useState(false);
   const recognitionRef = useRef(null);
 
-  const messages = [
+  const defaultMessages = [
     "Hi there! I'm your satellite guide!",
     "We'll explore how satellites are built, tested, and launched.",
     "I’ll ask you a few questions at the end. Let's get started!"
   ];
+
+  const messages = customMessages || defaultMessages;
 
   const speak = (text) => {
     const voices = window.speechSynthesis.getVoices();
@@ -47,8 +49,6 @@ function AvatarGuide() {
 
     recognition.onresult = (event) => {
       const transcript = event.results[0][0].transcript.toLowerCase();
-      console.log("Heard:", transcript);
-
       if (transcript.includes("next") || transcript.includes("start")) {
         handleNext();
       }
@@ -83,13 +83,13 @@ function AvatarGuide() {
     if (index < messages.length - 1) {
       setIndex(index + 1);
     } else {
-      navigate("/lesson");
+      navigate("/lesson"); // or another route if needed
     }
   };
 
   return (
     <motion.div
-      className="flex flex-col items-center justify-center text-center text-white min-h-screen bg-black p-4"
+      className="flex flex-col items-center text-center text-white p-4"
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
@@ -98,15 +98,9 @@ function AvatarGuide() {
         <Lottie animationData={animationData} loop={true} />
       </div>
 
-      <h2 className="text-2xl font-bold mb-4">Welcome to Build Your Own Satellite!</h2>
+      <h2 className="text-2xl font-bold mb-4">Satellite Guide</h2>
 
-      <Webcam className="rounded-lg shadow-lg w-80" />
-
-      <p className="mt-4 text-sm text-gray-400">
-        Your webcam is active. Say "start" or "next" to continue.
-      </p>
-
-      <div className="bg-white text-black p-4 mt-4 rounded-lg shadow-md max-w-md">
+      <div className="bg-white text-black p-4 mt-2 rounded-lg shadow-md max-w-md">
         {messages[index]}
       </div>
 
@@ -115,7 +109,7 @@ function AvatarGuide() {
           onClick={handleNext}
           className="px-6 py-2 bg-white text-black font-semibold rounded-lg shadow-md hover:bg-gray-200 transition"
         >
-          {index < messages.length - 1 ? "Next" : "Start Learning"}
+          {index < messages.length - 1 ? "Next" : "Start Lesson"}
         </button>
 
         <button

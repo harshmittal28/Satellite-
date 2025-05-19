@@ -4,7 +4,7 @@ import WebcamFeed from "./WebcamFeed";
 
 const LessonPage = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-6 min-h-screen bg-black text-white">
       <div>
         <AvatarGuide
           messages={[

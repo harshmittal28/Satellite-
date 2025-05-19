@@ -1,12 +1,55 @@
-# React + Vite
+# 🛰️ Build Your Own Satellite – Interactive Learning App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An educational web app that teaches children how satellites work using animated avatars, interactive lessons, quizzes, and real-time feedback. Built with React and Vite, it uses voice recognition, text-to-speech, and gamification to create an engaging learning experience.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+- 🗣️ **Text-to-Speech Avatar** – Speak explanations to users
+- 🎙️ **Voice Recognition** – Users can answer with voice
+- 📷 **Webcam Access** – With proper permission handling
+- 📚 **Animated Lessons** – Learn step-by-step with visuals
+- ❓ **Interactive Quizzes** – Multiple input methods (voice + buttons)
+- 🏅 **Gamified Badges** – Rewards based on performance
+- 📊 **Progress Tracking** – Dynamic summaries and reports
+- ☁️ **Firebase Integration** – Real-time data storage with Firestore
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🛠️ Tech Stack
+
+| Tool             | Purpose                            |
+|------------------|-------------------------------------|
+| React + Vite     | Frontend framework & dev server     |
+| Tailwind CSS     | Utility-first styling               |
+| Firebase         | Backend database and hosting        |
+| Framer Motion    | Animations                          |
+| Web APIs         | Text-to-Speech, Speech Recognition  |
+
+---
+
+## 📦 Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/your-username/build-your-own-satellite.git
+cd build-your-own-satellite
+
+# Install dependencies
+npm install
+
+# Developement
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview the production build
+npm run preview
+
+# Make sure you configure Firebase with your credentials in a .env file if the project uses one.
+
+#📄 License
+
+This project is licensed under the MIT License.

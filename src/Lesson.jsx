@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom"; // ✅ Correct import
+import { useNavigate } from "react-router-dom";
 
 const lessonSteps = [
   "Welcome to Lesson 1: Satellite Basics!",
@@ -12,18 +12,22 @@ const lessonSteps = [
 
 const Lesson = ({ onNext }) => {
   const [step, setStep] = useState(0);
-  const navigate = useNavigate(); // ✅ Correct spelling
+  const navigate = useNavigate();
 
   const speak = (text) => {
+    if (!window.speechSynthesis) return;
+
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = "en-US";
     utterance.pitch = 1.1;
     utterance.rate = 1;
+
     const voices = window.speechSynthesis.getVoices();
     if (voices.length > 0) {
       utterance.voice = voices.find(v => v.lang.startsWith("en")) || voices[0];
     }
-    window.speechSynthesis.cancel();
+
+    window.speechSynthesis.cancel(); // Stop any ongoing speech
     window.speechSynthesis.speak(utterance);
   };
 
@@ -36,9 +40,9 @@ const Lesson = ({ onNext }) => {
       setStep(step + 1);
     } else {
       if (onNext) {
-        onNext(); // if passed from App.jsx
+        onNext();
       } else {
-        navigate("/quiz"); // ✅ fallback
+        navigate("/quiz");
       }
     }
   };
@@ -53,7 +57,7 @@ const Lesson = ({ onNext }) => {
       <h2 className="text-2xl font-bold mb-6">Lesson 1: Satellite Basics</h2>
       <p className="mb-8 max-w-xl">{lessonSteps[step]}</p>
       <button
-        className="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded text-white shadow-lg"
+        className="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded text-white shadow-lg transition"
         onClick={handleNextStep}
       >
         {step < lessonSteps.length - 1 ? "Next" : "Take Quiz"}
